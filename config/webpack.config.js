@@ -17,7 +17,7 @@ module.exports = {
         noParse: ['jquery'],
         loaders: [{
             test: /\.css$/,
-            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+            loader: ExtractTextPlugin.extract('css-loader')
         }, {
             test: /\.(jpe?g|png|gif)$/i,
             loaders: ['url?limit=10000&name=image/[hash:8].[name].[ext]']
@@ -30,6 +30,11 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             names: ["vendor", "manifest"]
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: 'app',
+            children: true,
+            minChunks: 2
+        }),
         new HtmlWebpackPlugin({
             template: './template/index.html',
             filename: '../index.html', //生成的html存放路径，相对于 path
@@ -38,6 +43,10 @@ module.exports = {
                 // removeComments: true, //移除HTML中的注释
                 // collapseWhitespace: true //删除空白符与换行符
             }
+        }),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
         }),
         // //暴露全局接口到模块中，注意：并非暴露到window下，仅仅是模块内部不需要再写require这些模块，就可以使用这些模块的别名
         // new webpack.ProvidePlugin({

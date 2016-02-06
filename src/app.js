@@ -3,7 +3,6 @@ var Router = require('./router'),
 
 require('../node_modules/biz-ui/dist/jquery.bizui.css');
 require('../asset/css/quick-view.css');
-window.jQuery = window.$ = require('jquery');
 
 require('biz-ui');
 

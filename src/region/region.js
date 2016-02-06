@@ -1,4 +1,5 @@
 var bizui = require('biz-ui');
+require('../common/common');
 
 function init() {
     /**

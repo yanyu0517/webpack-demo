@@ -17,6 +17,11 @@ var Router = Backbone.Router.extend({
         require.ensure(['./client/client'], function(require){
             require('./client/client')();
         }, 'client')
+    },
+    test: function(){
+        require.ensure(['./test/test'], function(){
+            require('./test/test');
+        }, 'test')
     }
 })
 module.exports = Router;
